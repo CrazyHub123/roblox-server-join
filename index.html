@@ -1,25 +1,92 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Joining Roblox Server...</title>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const placeId = urlParams.get('placeId');
-      const jobId = urlParams.get('jobId');
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Roblox Server</title>
 
-      if (placeId && jobId) {
-        const robloxLink = `roblox://placeId=${placeId}&gameInstanceId=${jobId}`;
-        window.location.href = robloxLink;
-      } else {
-        document.write("<p>Missing placeId or jobId in the URL.</p>");
-      }
-    </script>
-  </head>
-  <body>
-    <p>If you are not redirected, <a id="fallbackLink">click here</a>.</p>
+    <style>
+        /* Set the background color to a bright purple */
+        body {
+            background-color: #9b4dff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+        }
+
+        /* Centered content style */
+        .content {
+            text-align: center;
+        }
+
+        /* Loading spinner animation */
+        .spinner {
+            border: 4px solid #f3f3f3; /* Light gray */
+            border-top: 4px solid #ff66cc; /* Bright pink */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        /* Animation for the spinner */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Stylish link text */
+        a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            background-color: white;
+            color: #9b4dff;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <h1>🚀 Joining the Roblox Server...</h1>
+        <div class="spinner"></div>
+        <p>If you are not redirected automatically, <a href="#" id="fallbackLink">click here to join</a>.</p>
+    </div>
+
     <script>
-      const fallback = document.getElementById("fallbackLink");
-      fallback.href = `roblox://placeId=${placeId}&gameInstanceId=${jobId}`;
+        // Get query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const placeId = urlParams.get('placeId');
+        const jobId = urlParams.get('jobId');
+
+        // Build the roblox:// link and redirect
+        if (placeId && jobId) {
+            const robloxLink = `roblox://placeId=${placeId}&gameInstanceId=${jobId}`;
+            window.location.href = robloxLink;
+        } else {
+            document.write("<p>Missing placeId or jobId in the URL.</p>");
+        }
+
+        // Set the fallback link in case of failure
+        const fallback = document.getElementById("fallbackLink");
+        fallback.href = `roblox://placeId=${placeId}&gameInstanceId=${jobId}`;
     </script>
-  </body>
+
+</body>
 </html>
