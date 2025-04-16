@@ -40,7 +40,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Stylish link text */
+        /* Stylish link button */
         a {
             text-decoration: none;
             color: white;
@@ -59,6 +59,14 @@
             color: #9b4dff;
             transform: scale(1.1);
         }
+
+        /* Text under button */
+        .join-text {
+            margin-top: 15px;
+            font-size: 16px;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
@@ -66,7 +74,10 @@
     <div class="content">
         <h1>🚀 Joining the Roblox Server...</h1>
         <div class="spinner"></div>
-        <p>If you are not redirected automatically, <a href="#" id="fallbackLink">click here to join</a>.</p>
+        <a href="#" id="fallbackLink">Click here to join</a>
+        <div class="join-text">
+            If you are not redirected automatically, <a href="#" id="manualLink">join here</a>.
+        </div>
     </div>
 
     <script>
@@ -83,8 +94,10 @@
 
         // Fallback link in case redirection doesn't work
         const fallback = document.getElementById("fallbackLink");
+        const manualLink = document.getElementById("manualLink");
         if (placeId && jobId) {
             fallback.href = `roblox://placeId=${placeId}&gameInstanceId=${jobId}`;
+            manualLink.href = `roblox://placeId=${placeId}&gameInstanceId=${jobId}`;
         }
     </script>
 
