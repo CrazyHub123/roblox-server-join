@@ -75,17 +75,17 @@
         const placeId = urlParams.get('placeId');
         const jobId = urlParams.get('jobId');
 
-        // Build the roblox:// link and redirect
+        // Build the roblox:// link and redirect if both are present
         if (placeId && jobId) {
             const robloxLink = `roblox://placeId=${placeId}&gameInstanceId=${jobId}`;
             window.location.href = robloxLink;
-        } else {
-            document.write("<p>Missing placeId or jobId in the URL.</p>");
         }
 
-        // Set the fallback link in case of failure
+        // Fallback link in case redirection doesn't work
         const fallback = document.getElementById("fallbackLink");
-        fallback.href = `roblox://placeId=${placeId}&gameInstanceId=${jobId}`;
+        if (placeId && jobId) {
+            fallback.href = `roblox://placeId=${placeId}&gameInstanceId=${jobId}`;
+        }
     </script>
 
 </body>
